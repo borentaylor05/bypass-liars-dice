@@ -10,3 +10,14 @@
   margin-bottom: 20px; 
   display: block;
 }
+
+li.active {
+  font-weight: bolder;
+  background-color: lightgray;
+  padding: 5px;
+}
+
+.alert {
+  padding: 10px;
+  background-color: rgba(100, 200, 100, 0.8);
+}

@@ -9,20 +9,25 @@
 <body ng-app="myApp">
   <div>
     
-    <div ng-switch="currentGameView">
+    <div ng-switch="gameView">
       <div ng-switch-default>
         <new-game></new-game>
       </div>
 
       <div ng-switch-when="currentGame">
-        <h4>Current Game</h4>
+        <current-game></current-game>
       </div>
     </div>
 
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
   <script src="app.js"></script>
   <script src="services/game.service.js"></script>
+
+  <script src="controllers/current-game.controller.js"></script>
+  <script src="directives/current-game.directive.js"></script>
+  
   <script src="controllers/new-game.controller.js"></script>
   <script src="directives/new-game.directive.js"></script>
+
   </body>
 </html>

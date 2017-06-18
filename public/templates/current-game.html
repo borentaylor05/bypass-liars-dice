@@ -1,0 +1,47 @@
+<div class="current-game-container">
+  <h1>{{ title }}</h1>
+  <button ng-click="startNewGame()">START NEW GAME</button>
+  <button ng-click="getCurrentGame()" ng-if="!game">GET CURRENT GAME</button>
+  <p ng-if="!game">^^^ This is dumb but wanted to make an API call on click to get the game</p>
+  <div ng-if="game">
+    <h4>Game State</h4>
+    <ul>
+      <li>Game ID: {{ game._id }}</li>
+      <li>Number of Players: {{ game.numPlayers }}</li>
+      <li>Number of Dice Per Player: {{ game.numDice }}</li>
+      <li>Who's turn is it? Player {{ currentPlayer + 1 }}</li>
+      <li>Current Turn Number: {{ currentTurn + 1 }}</li>
+    </ul>
+
+    <h4>Play Game</h4>
+    <h5 class="alert" ng-show="challengeResult">{{ challengeResult }}</h5>
+    <ul>
+      <li ng-class="{active: $index === currentPlayer}" ng-repeat="player in game.playerHands">
+        <h4>
+          Player {{ $index + 1 }}
+          <button ng-hide="visibleMoves[$index]" ng-click="showPlayerMoves($index)">Show All Moves</button>
+          <button ng-show="visibleMoves[$index]" ng-click="setVisibility($index, false)">Hide Moves</button>
+        </h4>
+        <div class="moves" ng-if="$index === currentPlayer">
+          
+          <div class="input-section">
+            <label for="claim">Claim Face</label>
+            <input type="number" ng-model="claim.face" placeholder="Type your claim face">
+            <label for="claim">Claim Value</label>
+            <input type="number" ng-model="claim.value" placeholder="Type your claim value">
+            <button ng-click="makeClaim($index, claim)" ng-disabled="!claim.value || !claim.face">Make a Claim</button>
+          </div>
+
+          <div class="input-section" ng-if="hasPreviousClaim">
+            <button ng-click="makeChallenge($index)">Challenge Previous Claim</button>
+          </div>
+
+        </div>
+
+        <div ng-if="visibleMoves[$index]">
+          <pre>{{ playerMoves | json }}</pre>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
