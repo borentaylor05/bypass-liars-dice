@@ -4,24 +4,25 @@
   <meta charset="utf-8">
   <title>Bypass Mobile: Liar's Dice</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/game.css">
 </head>
 <body ng-app="myApp">
-  <div ng-controller="GameController">
-    <!-- Current Game UI -->
-    <h4>Game ID: {{games[0]._id}}</h4>
+  <div>
+    
+    <div ng-switch="currentGameView">
+      <div ng-switch-default>
+        <new-game></new-game>
+      </div>
 
-    <h4>Player hands:</h4>
-    <div ng-repeat="hand in games[0].playerHands track by $index">
-      Player {{$index}} hand: {{ hand }}
+      <div ng-switch-when="currentGame">
+        <h4>Current Game</h4>
+      </div>
     </div>
-
-    <h4>Actions:</h4>
-    <div ng-repeat="action in games[0].actions track by $index">
-      Player {{ action.player }} claimed there are {{ action.claimNumber }} {{ action.claimFace }}'s
-    </div>
-  </div>
 
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
   <script src="app.js"></script>
+  <script src="services/game.service.js"></script>
+  <script src="controllers/new-game.controller.js"></script>
+  <script src="directives/new-game.directive.js"></script>
   </body>
 </html>

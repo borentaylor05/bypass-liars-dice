@@ -1,0 +1,22 @@
+<div class="new-game-container">
+  <h4>Choose Number of Players and Click Button to Start Game</h4>
+  <form name="newGame" ng-submit="startNewGame(selectedNumPlayers, selectedNumDice)">
+    <div class="input-section">
+      <label for="newGame.numPlayers">Select the number of players:</label>
+      <select name="newGame.numPlayers" ng-model="selectedNumPlayers" ng-change="checkValid(selectedNumPlayers)">
+        <option value="{{ players }}" ng-repeat="players in playersSelectOptions">{{ players }}</option>
+      </select>
+    </div>
+
+    <div class="input-section">
+      <label for="newGame.numDice">Select the number of dice per player:</label>
+      <select name="newGame.numDice" ng-model="selectedNumDice" ng-change="checkValid(selectedNumDice)">
+        <option value="{{ dice }}" ng-repeat="dice in diceSelectOptions">{{ dice }}</option>
+      </select>
+    </div>
+
+    <p class="error" ng-if="error">{{ error }}</p>
+
+    <button class="submit" type="submit">Start Game</button>
+  </form>
+</div>

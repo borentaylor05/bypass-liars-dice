@@ -1,0 +1,12 @@
+.submit {
+  display: block;
+}
+
+.error {
+  color: red;
+}
+
+.input-section {
+  margin-bottom: 20px; 
+  display: block;
+}
